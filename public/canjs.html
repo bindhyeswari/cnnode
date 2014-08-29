@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="/canjs/can.jquery.js"></script>
+    <script>
+
+        var Candidate = can.Model({
+            findAll: 'GET /candidates',
+            findOne: 'GET /candidates/{id}',
+            create: 'POST /candidates',
+            update: 'PUT /candidates/{id}',
+            destroy: 'DELETE /candidates/{id}'
+        }, {});
+
+        /*var candidate = new Candidate({
+            // id: '540022925636517f0a951e7d',
+            name: 'dhania',
+            email: 'mishra@gmail.com'
+        });*/
+
+        /*candidate.save(function (saved_candidate) {
+            console.log(saved_candidate);
+        }, function (xhr){
+            console.log('Error!!!');
+            console.log(xhr);
+        });*/
+
+        Candidate.findAll({ 'name': 'sudesna' }, function (data) {
+            console.log( data.attr());
+            var arr = data.attr();
+            for (var i = 0, len = arr.length; i < len; i++) {
+                console.log(arr[i].name);
+            }
+        });
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
