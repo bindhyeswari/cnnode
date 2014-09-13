@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>controllers.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(169,183,198); }
+.s1 { color: rgb(106,135,89); }
+.s2 { color: rgb(204,120,50); }
+.s3 { color: rgb(204,120,50); font-weight: bold; }
+.s4 { color: rgb(128,128,128); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+controllers.js</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0"> 
+ 
+angular.module(</span><span class="s1">'candidateApp'</span><span class="s2">, </span><span class="s0">[]).controller(</span><span class="s1">'CreateCandidateCtrl'</span><span class="s2">, </span><span class="s3">function</span><span class="s0">($scope</span><span class="s2">, </span><span class="s0">Candidate){ 
+    $scope.title = </span><span class="s1">'Create a Candidate!'</span><span class="s2">;</span><span class="s0"> 
+    $scope.candidates = []</span><span class="s2">;</span><span class="s0"> 
+    $scope.name = </span><span class="s1">''</span><span class="s2">;</span><span class="s0"> 
+    $scope.email = </span><span class="s1">''</span><span class="s2">;</span><span class="s0"> 
+ 
+    $scope.createCandidate = </span><span class="s3">function </span><span class="s0">() { 
+        Candidate.setName($scope.name)</span><span class="s2">;</span><span class="s0"> 
+        Candidate.setEmail($scope.email)</span><span class="s2">;</span><span class="s0"> 
+        console.log(Candidate._candidate)</span><span class="s2">;</span><span class="s0"> 
+        Candidate.save().success(</span><span class="s3">function </span><span class="s0">(saved_candidate) { 
+            $scope.candidates.push(saved_candidate)</span><span class="s2">;</span><span class="s0"> 
+        })</span><span class="s2">;</span><span class="s0"> 
+    }</span><span class="s2">;</span><span class="s0"> 
+}).factory(</span><span class="s1">'Candidate'</span><span class="s2">, </span><span class="s3">function</span><span class="s0">($http){ 
+    </span><span class="s3">var </span><span class="s0">service = { 
+</span><span class="s4">// our factory definition</span><span class="s0"> 
+        _candidate: {}</span><span class="s2">,</span><span class="s0"> 
+        setName: </span><span class="s3">function</span><span class="s0">(newName) { 
+            service._candidate[</span><span class="s1">'name'</span><span class="s0">] = newName</span><span class="s2">;</span><span class="s0"> 
+        }</span><span class="s2">,</span><span class="s0"> 
+        setEmail: </span><span class="s3">function</span><span class="s0">(newEmail) { 
+            service._candidate[</span><span class="s1">'email'</span><span class="s0">] = newEmail</span><span class="s2">;</span><span class="s0"> 
+        }</span><span class="s2">,</span><span class="s0"> 
+        save: </span><span class="s3">function</span><span class="s0">() { 
+            </span><span class="s3">return </span><span class="s0">$http.post(</span><span class="s1">'http://localhost:3000/candidates'</span><span class="s2">, </span><span class="s0">service._candidate)</span><span class="s2">;</span><span class="s0"> 
+        } 
+    }</span><span class="s2">;</span><span class="s0"> 
+    </span><span class="s3">return </span><span class="s0">service</span><span class="s2">;</span><span class="s0"> 
+})</span><span class="s2">;</span><span class="s0"> 
+ 
+</span></pre>
+</body>
+</html>

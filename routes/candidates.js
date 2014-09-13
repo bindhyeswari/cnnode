@@ -35,6 +35,7 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
+    console.log(req.body);
     (new CandidateModel({
         name: req.body.name,
         email: req.body.email

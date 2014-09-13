@@ -1,0 +1,20 @@
+{
+  "name": "candidates-node",
+  "version": "0.0.0",
+  "authors": [
+    "mishra <tech@peoplevendor.com>"
+  ],
+  "description": "candidates project",
+  "main": "base.js",
+  "keywords": [
+    "none"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.2.23",
+    "angular-resource": "latest",
+    "foundation": "~5.4.0",
+    "foundation-icons": "*",
+    "canjs": "~2.1.3"
+  }
+}

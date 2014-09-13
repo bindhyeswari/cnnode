@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS $resource demo</title>
+    <link rel="stylesheet" href="/css/base.css"/>
+    <script src="/angular/angular.js"></script>
+    <script src="/angular-resource/angular-resource.js"></script>
+    <script>
+        angular.module('myapp', ['ngResource']).factory('Candidate', function ($resource) {
+            return $resource('/candidates/:id');
+        }).controller('MyController', function ($scope, Candidate) {
+            $scope.candidates = Candidate.query();
+        }).controller('GetByIdController', function ($scope, Candidate) {
+            $scope.candidate = {};
+            $scope.id = '';
+            $scope.getCandidate = function () {
+                $scope.candidate = Candidate.get({ id: $scope.id});
+
+            };
+        });
+    </script>
+</head>
+<body>
+    <div ng-controller="MyController">
+        <button>Get All Candidates</button>
+        <div ng-repeat="candidate in candidates">
+            {{candidate | json}}
+        </div>
+    </div>
+
+    <div ng-controller="GetByIdController">
+        <input type="text" ng-model="id"/>
+        <button ng-click="getCandidate()">Search</button>
+        <div>{{candidate | json}}</div>
+    </div>
+</body>
+</html>
